@@ -1,0 +1,19 @@
+K7 DECOMPOSED + QUANTEM RESOURCE COUNTS
+
+Input pair: Alice = 2, Bob = 3
+
+DECOMPOSED K7 CIRCUIT
+Gate counts: {'rz': 97, 'ry': 56, 'cx': 47, 'rx': 11}
+Depth: 77
+Qubits: 6
+
+QUANTEM PROTECTED CIRCUIT
+Strategy: QEDStrategy.ICEBERG
+Gate counts: {'cx': 307, 'rxx': 145, 'rzz': 132, 'measure': 46, 'h': 39}
+Depth: 438
+Qubits: 47
+Classical bits: 46
+
+QUANTEM PROTECTED CIRCUIT - NATIVE GATES
+Gate counts: {'cx': 742, 'rz': 317, 'ry': 306, 'rx': 300, 'measure': 46}
+Depth: 995

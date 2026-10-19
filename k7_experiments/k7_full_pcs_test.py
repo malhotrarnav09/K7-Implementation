@@ -55,6 +55,8 @@ decomposed = transpile(
 
 print("Decomposed gate counts:", dict(decomposed.count_ops()))
 
+print("Decomposed depth:", decomposed.depth())
+
 compiler = QEDCompiler(
     clifford_threshold=0.4,
     default_num_checks=1,
@@ -91,6 +93,33 @@ protected_native = transpile(
 print("\nICEBERG NATIVE GATE COUNTS")
 print(dict(protected_native.count_ops()))
 print("ICEBERG NATIVE DEPTH:", protected_native.depth())
+
+from pathlib import Path
+
+output_dir = Path(__file__).parent / "outputs"
+output_dir.mkdir(exist_ok=True)
+
+counts_file = output_dir / "k7_quantem_counts.txt"
+
+with open(counts_file, "w") as file:
+    file.write("K7 DECOMPOSED + QUANTEM RESOURCE COUNTS\n\n")
+    file.write("Input pair: Alice = 2, Bob = 3\n\n")
+
+    file.write("DECOMPOSED K7 CIRCUIT\n")
+    file.write(f"Gate counts: {dict(decomposed.count_ops())}\n")
+    file.write(f"Depth: {decomposed.depth()}\n")
+    file.write(f"Qubits: {decomposed.num_qubits}\n\n")
+
+    file.write("QUANTEM PROTECTED CIRCUIT\n")
+    file.write(f"Strategy: {result.strategy_used}\n")
+    file.write(f"Gate counts: {dict(protected.count_ops())}\n")
+    file.write(f"Depth: {protected.depth()}\n")
+    file.write(f"Qubits: {protected.num_qubits}\n")
+    file.write(f"Classical bits: {protected.num_clbits}\n\n")
+
+    file.write("QUANTEM PROTECTED CIRCUIT - NATIVE GATES\n")
+    file.write(f"Gate counts: {dict(protected_native.count_ops())}\n")
+    file.write(f"Depth: {protected_native.depth()}\n")
 
 print("\nStrategy used:", result.strategy_used)
 print("Protected circuit qubits:", protected.num_qubits)
@@ -206,3 +235,17 @@ print("\nNOISY ICEBERG RESULTS")
 print("Accepted shots:", accepted_shots)
 print("Acceptance rate:", accepted_shots / SHOTS)
 print("K7 win rate:", winning_shots / accepted_shots)
+
+
+#print diagram
+diagram_file = output_dir / "k7_quantem_circuit.png"
+
+protected.draw(
+    output="mpl",
+    filename=str(diagram_file),
+    fold=50,
+    scale=0.6,
+)
+
+print("\nSaved QuantEM circuit diagram to:")
+print(diagram_file)
