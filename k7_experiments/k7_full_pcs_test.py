@@ -3,7 +3,7 @@ from qiskit.circuit.library import StatePreparation
 from quantem.utils import convert_to_PCS_circ
 
 from src.K7.quantumcircuit import build_game_circuit
-from draw_k7_decomposed import NATIVE_GATES
+from k7_experiments.draw_k7_decomposed import NATIVE_GATES
 
 from quantem import QEDCompiler, QEDStrategy
 

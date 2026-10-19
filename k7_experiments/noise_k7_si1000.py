@@ -50,13 +50,13 @@ noise_model.add_all_qubit_quantum_error(
     ["reset"]
 )
 
-from draw_k7_compact import (
+from k7_experiments.draw_k7_compact import (
     ALICE_INPUT,
     BOB_INPUT,
     build_circuit,
 )
 
-from draw_k7_decomposed import NATIVE_GATES
+from k7_experiments.draw_k7_decomposed import NATIVE_GATES
 
 complete_circuit = build_circuit(
     ALICE_INPUT,

@@ -7,7 +7,7 @@ from qiskit.circuit import Gate
 from qiskit.circuit.library import UnitaryGate
 from qiskit.quantum_info import Operator
 
-from draw_k7_compact import (
+from k7_experiments.draw_k7_compact import (
     ALICE_INPUT,
     BOB_INPUT,
     bases_eight,
